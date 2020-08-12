@@ -1,0 +1,22 @@
+LEN = $D6
+
+DEST = $2FA
+
+LP = $1D
+
+
+ JSR $FF58
+ TSX
+ LDA $100,X
+ STA $01
+ DEX
+ LDA $100,X
+ STA $00
+ LDX #LEN
+ LDY #LP
+MOVE LDA ($00),Y
+ STA DEST-LP,Y
+ INY
+ DEX
+ BNE MOVE
+ JMP DEST
